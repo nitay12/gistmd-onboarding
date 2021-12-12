@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import CustomizedStepper from "./components/Stepper/Stepper";
+import CustomizedStepper from "../components/Stepper/Stepper";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
   questionsSelector,
   getAllQuestions,
   getQuestionOptions,
-} from "./redux/slices/questionsSlice";
-import Question from "./components/Question";
+} from "../redux/slices/questionsSlice";
+import Question from "../layouts/Question";
 
 function App() {
   const dispatch = useDispatch();

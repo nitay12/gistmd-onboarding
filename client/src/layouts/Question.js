@@ -8,8 +8,8 @@ import {
 } from "../redux/slices/questionsSlice";
 import { Typography, Grid, TextField, Zoom } from "@mui/material";
 import { LoadingButton, StaticDatePicker } from "@mui/lab";
-import IconButton from "./IconButton";
-import NavButtons from "./NavButtons";
+import IconButton from "../components/IconButton";
+import NavButtons from "../components/NavButtons";
 
 function Question() {
   const dispatch = useDispatch();

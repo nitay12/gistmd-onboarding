@@ -9,7 +9,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import CustomIcon from "./components/CustomIcon";
+import CustomIcon from "../components/CustomIcon";
 function Patient() {
   const [userData, setUserData] = useState();
   const [randomData, setRandomData] = useState();
@@ -70,6 +70,7 @@ function Patient() {
             icon="calendar"
             data={new Date(userData?.Age).toLocaleDateString()}
           />
+          <Property icon="briefcase-medical" data={userData?.Procedore} />
           <Property icon="mobile-alt" data={randomData?.cell} />
           <Property icon="phone" data={randomData?.phone} />
           <CircularProgress variant="determinate" value={50} />

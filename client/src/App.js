@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import OnboardingForm from "./OnboardingForm";
-import Patient from "./Patient";
-import PatientsList from "./PatientsList";
+import OnboardingForm from "./pages/OnboardingForm";
+import Patient from "./pages/Patient";
+import PatientsList from "./pages/PatientsList";
 function App() {
   return (
     <Routes>
