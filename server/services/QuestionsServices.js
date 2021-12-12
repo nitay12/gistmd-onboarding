@@ -8,7 +8,8 @@ const getQuestionsService = async () => {
 };
 const getOneQuestionService = async (questionId) => {
   try {
-    return await getOneQuestionDb(questionId);
+    const [res] = await getOneQuestionDb(questionId);
+    return res
   } catch (e) {
     throw new Error(e.message);
   }
