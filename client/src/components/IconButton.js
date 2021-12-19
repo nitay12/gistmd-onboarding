@@ -1,5 +1,5 @@
 import React from "react";
-import {Icon, Button, Typography, Grid } from "@mui/material";
+import {Button, Typography, Grid } from "@mui/material";
 import CustomIcon from "./CustomIcon";
 
 function IconButton({ icon, active, onClick, completed, className, title }) {

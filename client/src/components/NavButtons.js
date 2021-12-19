@@ -17,7 +17,6 @@ function NavButtons() {
     userSelectedOptions,
     questions,
     loading,
-    submittedUser,
   } = useSelector(questionsSelector);
   const selectedOption = userSelectedOptions[currentQuestion.name];
   const finalStep = currentQuestion.ID === questions.length - 1;
