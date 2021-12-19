@@ -2,19 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   questionsSelector,
-  nextQuestion,
-  previousQuestion,
   selectOption,
 } from "../redux/slices/questionsSlice";
 import { Typography, Grid, TextField, Zoom } from "@mui/material";
-import { LoadingButton, StaticDatePicker } from "@mui/lab";
+import { StaticDatePicker } from "@mui/lab";
 import IconButton from "../components/IconButton";
 import NavButtons from "../components/NavButtons";
 
 function Question() {
 
   const dispatch = useDispatch();
-  const { currentQuestion, userSelectedOptions, options, loading } =
+  const { currentQuestion, userSelectedOptions, options } =
     useSelector(questionsSelector);
   const { enText, name } = currentQuestion;
   const selectedOption = userSelectedOptions[currentQuestion.name];
