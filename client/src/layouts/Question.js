@@ -12,21 +12,25 @@ import IconButton from "../components/IconButton";
 import NavButtons from "../components/NavButtons";
 
 function Question() {
+
   const dispatch = useDispatch();
   const { currentQuestion, userSelectedOptions, options, loading } =
     useSelector(questionsSelector);
   const { enText, name } = currentQuestion;
   const selectedOption = userSelectedOptions[currentQuestion.name];
 
+
+  //TODO: fix the IconButton warning when completed/active props are seted to true/false
   const mapOptions = options.map((option) => (
-    <Zoom in={option.questionId === currentQuestion.ID}>
-      <Grid item key={option.id}>
+    <Zoom key={option.id} in={option.questionId === currentQuestion.ID}>
+      <Grid item>
         <IconButton
           sx={{ maxWidth: 10 }}
           onClick={() => {
             dispatch(selectOption(option.name));
           }}
-          active={selectedOption === option.name}
+          active={selectedOption === option.name?("true"):(undefined)}
+          completed = {undefined}
           icon={option.icon}
           title={option.name}
         />
