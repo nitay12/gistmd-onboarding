@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
-  Avatar,
   Grid,
-  CircularProgress,
-  Icon,
-  Typography,
-  Box,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  IconButton,
+  Avatar,
+  Tooltip,
+  Zoom,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+
 import CustomIcon from "../components/CustomIcon";
 function Patient() {
   const [userData, setUserData] = useState();
@@ -36,56 +41,88 @@ function Patient() {
   }, [patientId]);
   const Property = (props) => {
     return (
-      <Grid container spacing={1} xs={8} sm={4}>
-        <Grid item>
-          {props.icon ? <CustomIcon completed icon={props.icon} /> : null}
-        </Grid>
-        <Grid item>
-          <strong>
-            {props.label} {props.data}
-          </strong>
-        </Grid>
-      </Grid>
+      <Zoom in={randomData?.picture}>
+        <ListItem
+          secondaryAction={
+            props.unedditable ? null : (
+              <Tooltip title={`Update ${props.label.toLowerCase()}`}>
+                <IconButton edge="end" aria-label="edit">
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+            )
+          }
+        >
+          {props.icon ? (
+            <ListItemAvatar>
+              <Avatar>
+                <CustomIcon completed icon={props.icon} />
+              </Avatar>
+            </ListItemAvatar>
+          ) : null}
+
+          <ListItemText primary={props.label} secondary={props.data} />
+        </ListItem>
+      </Zoom>
     );
   };
   return (
-    <Grid container >
-      <Grid item xs={4} />
-      <Grid item xs={4} sx={{alignItems: 'center',textAlign: 'center', justifyContent: 'center'}}>
+    <Grid container>
+      <Grid item sm={4} xs={2} />
+      <Grid
+        item
+        sm={4}
+        xs={8}
+        sx={{
+          alignItems: "center",
+          textAlign: "center",
+          justifyContent: "center",
+        }}
+      >
         <Avatar
           sx={{ margin: "auto", width: 100, height: 100 }}
           src={randomData?.picture.large}
           alt={"Random Picture"}
         />
-          <Property label="ID:" data={userData?.ID} />
-
-        <Grid container>
+        <Property unedditable data={`#${userData?.ID}`} />
+        <List>
           <Property
+            unedditable
             icon="user"
+            label="Name"
             data={`${randomData?.name.first} ${randomData?.name.last}`}
           />
-          <Property icon="language" data={userData?.Language} />
-          <Property icon="venus-mars" data={userData?.Gender} />
+          <Property
+            icon="language"
+            label="Language"
+            data={userData?.Language}
+          />
+          <Property icon="venus-mars" label="Gender" data={userData?.Gender} />
           <Property
             icon="calendar"
+            label="Age"
             data={new Date(userData?.Age).toLocaleDateString()}
           />
-          <Property icon="briefcase-medical" data={userData?.Procedore} />
-          <Property icon="mobile-alt" data={randomData?.cell} />
-          <Property icon="phone" data={randomData?.phone} />
-          <CircularProgress variant="determinate" value={50} />
-          <Grid>
-            <Typography
-              variant="caption"
-              component="div"
-              color="text.secondary"
-            >
-              Mail Sent
-            </Typography>
-          </Grid>
-        </Grid>
+          <Property
+            icon="briefcase-medical"
+            label="Procedore"
+            data={userData?.Procedore}
+          />
+          <Property
+            unedditable
+            icon="mobile-alt"
+            label="Cellphone"
+            data={randomData?.cell}
+          />
+          <Property
+            unedditable
+            icon="phone"
+            label="Phone"
+            data={randomData?.phone}
+          />
+        </List>
       </Grid>
-      <Grid item xs={4} />
+      <Grid item sm={4} xs={2} />
     </Grid>
   );
 }
