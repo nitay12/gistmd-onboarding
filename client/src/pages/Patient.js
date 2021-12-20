@@ -15,6 +15,7 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 
 import CustomIcon from "../components/CustomIcon";
+import {ageCalculator} from '../utils'
 function Patient() {
   const [userData, setUserData] = useState();
   const [randomData, setRandomData] = useState();
@@ -39,6 +40,8 @@ function Patient() {
     }
     getUserData();
   }, [patientId]);
+  const birthDate = new Date(userData?.Age).toLocaleDateString()
+  const age = ageCalculator(userData?.Age)
   const Property = (props) => {
     return (
       <Zoom in={randomData?.picture}>
@@ -101,7 +104,7 @@ function Patient() {
           <Property
             icon="calendar"
             label="Age"
-            data={new Date(userData?.Age).toLocaleDateString()}
+            data={`${age} (${birthDate})`}
           />
           <Property
             icon="briefcase-medical"
